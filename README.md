@@ -87,6 +87,8 @@ git clone https://github.com/armomu/vue-material-admin.git
 
 cd vue-material-admin
 
+sudo npm install -g pnpm
+
 pnpm install
 
 pnpm run dev

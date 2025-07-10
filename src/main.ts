@@ -4,10 +4,10 @@ import './styles/index.scss';
 import App from './App.vue';
 import router, { syncRouter } from './router';
 import { vuetify } from '@/plugins/vuetify';
-import registeComponent from './components';
+import registerComponent from './components';
 
 const app = createApp(App);
-registeComponent(app);
+registerComponent(app);
 app.use(createPinia());
 app.use(vuetify);
 
