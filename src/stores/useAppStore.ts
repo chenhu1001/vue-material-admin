@@ -99,6 +99,7 @@ export const useAppStore = defineStore('main', () => {
             settings.cursor = 'fluid';
         } else {
             settings.cursor = 'default';
+            localStorage.setItem('frosted', '0');
         }
         settings.drawer = false;
         location.reload();

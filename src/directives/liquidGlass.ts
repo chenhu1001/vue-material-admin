@@ -1,4 +1,5 @@
 import { useAppStore } from '@/stores/useAppStore';
+import { frostedGlass } from './frostedGlass';
 import type { App, Directive } from 'vue';
 
 // 定义指令值（props）的接口
@@ -233,7 +234,6 @@ export const liquidGlassDirective: Directive<HTMLElement, LiquidGlassOptions> = 
         const initialOptions = { ...defaultOptions, ...binding.value };
         const initialWidth = el.clientWidth;
         const initialHeight = el.clientHeight;
-        console.log(el.style.padding);
         // 初始 Data URI 和 SVG
         const initialDisplacementDataUri = createDisplacementDataUri(
             initialOptions,
@@ -315,5 +315,10 @@ export const liquidGlassDirective: Directive<HTMLElement, LiquidGlassOptions> = 
 };
 // 导出插件形式便于全局注册
 export function setupLiquidGlassDirective(app: App) {
+    const f = localStorage.getItem('frosted');
+    if (f === '1') {
+        app.directive('liquidGlass', frostedGlass);
+        return;
+    }
     app.directive('liquidGlass', liquidGlassDirective);
 }

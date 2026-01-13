@@ -66,7 +66,7 @@ export const frostedGlass: Directive<HTMLElement, FrostedGlassOptions> = {
 
         ensureSharedFilter(options);
 
-        el.classList.add('frosted_glass');
+        el.classList.add('liquid_glass');
         el.style.borderRadius = `${options.radius}px`;
         el.style.backdropFilter = 'url(#glassShared)';
         el.style.setProperty('--frost', String(options.frost));
@@ -91,5 +91,5 @@ export const frostedGlass: Directive<HTMLElement, FrostedGlassOptions> = {
 };
 
 export function setupLiquidGlassDirective(app: App) {
-    app.directive('frostedGlass', frostedGlass);
+    app.directive('liquidGlass', frostedGlass);
 }

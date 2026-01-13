@@ -27,19 +27,35 @@
         </v-snackbar>
         <HatefulMouse v-if="mainStore.settings.cursor === 'round'" />
         <FluidCursor v-if="mainStore.settings.cursor === 'fluid'" />
+        <v-dialog v-model="dialog" width="570px">
+            <v-card title="Performance has decreased.">
+                <v-card-text>
+                    The current liquid glass card design is causing performance issues. Should we
+                    switch to a frosted glass card?
+                </v-card-text>
+                <v-card-actions>
+                    <v-btn @click="dialog = false">Keep Liquid Glass</v-btn>
+                    <v-btn color="primary" @click="onSwitch">Switch</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-app>
 </template>
 <script setup lang="ts">
+import { ref } from 'vue';
 import { RouterView } from 'vue-router';
 import { useAppStore } from '@/stores/useAppStore';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { useSnackbarStore } from '@/stores/useSnackbarStore';
 import router from './router';
 import { checkVersion } from './plugins/pwa';
+import { delay } from 'lodash';
 const mainStore = useAppStore();
 const useAuthEvent = useAuthStore();
 const snackbarEvent = useSnackbarStore();
+let flag = 0;
 router.beforeEach(async (to, from, next) => {
+    flag = 1;
     if (useAuthEvent.userDetail.id <= 0 && to.path !== '/login') {
         console.log(useAuthEvent.userDetail.id, 'useAuthEvent.userDetail.id');
         next('/login');
@@ -50,9 +66,43 @@ router.beforeEach(async (to, from, next) => {
     const d = document.getElementById('_loading_');
     d?.setAttribute('class', 'loading_ hide');
 });
-
 router.afterEach(() => {
     checkVersion();
+    delay(() => {
+        flag = 0;
+    }, 3000);
 });
+
+const dialog = ref(false);
+const onSwitch = () => {
+    localStorage.setItem('frosted', '1');
+    dialog.value = false;
+    mainStore.onCardStyleChange('liquid-glass');
+};
+(function () {
+    let lastTime = performance.now();
+    let frameCount = 0;
+    let fps = 60; // 初始值
+    let alerted = false;
+    function calculateFPS(currentTime: any) {
+        frameCount++;
+        const elapsed = currentTime - lastTime;
+
+        if (elapsed >= 1000) {
+            // 每秒更新一次 FPS
+            fps = Math.round((frameCount * 1000) / elapsed);
+            frameCount = 0;
+            lastTime = currentTime;
+            if (fps < 20 && !alerted && !flag) {
+                dialog.value = true;
+                alerted = true;
+            }
+        }
+
+        requestAnimationFrame(calculateFPS);
+    }
+
+    requestAnimationFrame(calculateFPS);
+})();
 </script>
 <style scoped lang="scss"></style>
