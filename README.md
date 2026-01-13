@@ -19,6 +19,7 @@
 
 Vue Material Admin 是一个基于 `Vuetify` 组件的开源中后台系统模板，采用了` Nesjs + Vue3 + TypeScript` 全栈开发，项目前端UI视觉遵循 [Material Design](https://m3.material.io/) 的设计规范，并在 [Vuetify](https://vuetifyjs.com/zh-Hans/) 基础组件继续向上构建开发，对其进行了扩展和优化，旨在实现一个简洁、轻量化的中后台解决方案，项目目前阶段主要用于学习、功能展示和开发用例测试，同时也适合作为生产环境项目的启动模板，项目会保持更新、增加更多的功能和优化，欢迎大家来[Issue](https://github.com/armomu/vue-material-admin/issues)  💭💭💭 聊天交流 ➡️ ➡️ ➡️ 
 
+> 由于更新了`液态玻璃`卡片模式并且设`置为默认`，增加了性能提示框切换回普通模式，大多数设备都是不到20帧的性能甚至更低，可以在`设置面板`切换为其它模式就行了，液态玻璃代码在 `src/directives/liquidGlass.ts`是一个指令，可以自行修改。
 
 ## ⛲ 技术栈
 
