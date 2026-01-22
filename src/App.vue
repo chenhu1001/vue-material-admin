@@ -93,7 +93,7 @@ const onSwitch = () => {
             fps = Math.round((frameCount * 1000) / elapsed);
             frameCount = 0;
             lastTime = currentTime;
-            if (fps < 20 && !alerted && !flag) {
+            if (fps < 20 && !alerted && !flag && mainStore.settings.cardStyle === 'liquid-glass') {
                 dialog.value = true;
                 alerted = true;
             }
