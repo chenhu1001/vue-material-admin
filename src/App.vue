@@ -75,6 +75,13 @@ router.afterEach(() => {
 
 const dialog = ref(false);
 const onSwitch = () => {
+    if (localStorage.getItem('frosted') === '1') {
+        mainStore.settings.cardStyle = 'shadow';
+        mainStore.settings.cursor = 'default';
+        mainStore.settings.drawer = false;
+        location.reload();
+        return;
+    }
     localStorage.setItem('frosted', '1');
     dialog.value = false;
     mainStore.onCardStyleChange('liquid-glass');

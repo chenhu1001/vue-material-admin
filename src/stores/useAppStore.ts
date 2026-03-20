@@ -45,7 +45,7 @@ export const useAppStore = defineStore('main', () => {
         backgroundColor: '#ffffff',
         drawer: false,
         primary: '#7F85F9',
-        cardStyle: 'liquid-glass', // border // default //
+        cardStyle: 'shadow', // border // default //
         backgroundColors: ['#ffffff', '#f8f8f8', '#e5eaef'],
         fixedHeader: true,
         cursor: 'fluid',

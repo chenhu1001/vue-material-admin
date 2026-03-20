@@ -79,14 +79,14 @@ function createDisplacementDataUri(
       <rect x="0" y="0" width="${width}" height="${height}" fill="black"></rect>
       <rect x="0" y="0" width="${width}" height="${height}" rx="${radius}" fill="url(#red)" />
       <rect x="0" y="0" width="${width}" height="${height}" rx="${radius}" fill="url(#blue)" style="mix-blend-mode: ${blend}" />
-      <rect 
-        x="${border}" 
-        y="${border}" 
-        width="${width - border * 2}" 
-        height="${height - border * 2}" 
-        rx="${radius}" 
-        fill="hsl(0 0% ${lightness}% / ${alpha})" 
-        style="filter:blur(${blur}px)" 
+      <rect
+        x="${border}"
+        y="${border}"
+        width="${width - border * 2}"
+        height="${height - border * 2}"
+        rx="${radius}"
+        fill="hsl(0 0% ${lightness}% / ${alpha})"
+        style="filter:blur(${blur}px)"
       />
     </svg>
     `;
